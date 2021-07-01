@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="./dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header>
+    <link rel="import" href="./includes/navbar.html">
+
+
+    <div id="header"></div>
+
+<div class="m-5 wrapper">
+  <h1 class="my-2 text-center">Support</h1>
+  <div class="container-Support ">
+    <div class="iframe-rwd">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d497511.11463249853!2d79.92880682245223!3d13.048043802725362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d3361%3A0x6e61a70b6863d433!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1623656574531!5m2!1sen!2sin"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <div class="Support">
+      <form style="position: relative;" name="support" id="suport" method="post">
+        <div class="toast " style="position: absolute; top:0px; right: 0px; " role="alert" aria-live="assertive"
+          aria-atomic="true">
+          <div class="toast-body text-danger">
+            Message as been sent
+            <!-- See? Just like this. -->
+          </div>
+        </div>
+        <div class="my-4 ">
+          <input type="text" class="form-control" name="firstname" placeholder="First Name" />
+        </div>
+  
+  
+  
+        <div class="my-4">
+          <input type="email" class="form-control" name="email" placeholder="Email" />
+        </div>
+  
+        <textarea id="ques" name="yourquestion" class="form-control" id="yourquestion" cols="50" rows="7"
+          placeholder="Your Question"></textarea>
+        <input class="my-5 btn btn-outline-success btn-block" type="submit" id="support" value="Send Message">
+      </form>
+    </div>
+
+  </div>
+</div>
+   
+
+
+    <script src="./dist/js/jquery.js"></script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+    <script>
+      $("#header").load("./includes/navbar.html");
+
+
+
+
+      $('.toast').toast({ delay: 5000, animation: true });
+
+      //success toast
+
+
+
+      $('#suport').submit(function (param) {
+        param.preventDefault();
+        firstname = $("input[name='firstname']").val();
+        email = $("input[name='email']").val();
+        yourquestion = $("#ques").val();
+        if (firstname == "") {
+          $('.toast-body').text('Please fill your name');
+          $('.toast').toast('show');
+          return false
+        }
+        if (email == "") {
+          $('.toast-body').text('Please fill your email');
+          $('.toast').toast('show');
+          return false
+        }
+        if (yourquestion == "") {
+          $('.toast-body').text('Please fill your Question');
+          $('.toast').toast('show');
+          return false
+        }
+        $('#support').prop('disabled', true)
+        param.preventDefault();
+        Email.send({
+          Host: "smtp.gmail.com",
+          Username: "elandhalir19@gmail.com",
+          Password: "elandhalir@123",
+          To: 'abiram.ramesh.2000@gmail.com',
+          From: "elandhalir19@gmail.com",
+          Subject: firstname + " as a question?",
+          Body: "Mail from : " + email + " " + yourquestion,
+        }).then(
+          message => $('.toast').toast('show'),
+
+        );
+        $('#support').prop('disabled', false);
+        $('#suport')[0].reset();
+      });
+
+
+    </script>
+
+</body>
+
+</html>
