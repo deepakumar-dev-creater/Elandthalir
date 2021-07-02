@@ -18,8 +18,8 @@
 
 
   <div class="banner">
-    <img src="./71y7dKn0L7.jpg" alt="">
-    <div class="content">
+    <img id="plant" src="./71y7dKn0L7.jpg" alt="">
+    <div class="content1">
       <h1>இளந்தளிர்</h1>
       <small>Elandhalir,an Helping organization for people needs</small>
       <a href="form.html"><button class="btn ">Join with us</button></a>
@@ -45,9 +45,8 @@
         </div>
         <span class="mb-2 badge badge-primary">twitter</span>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Odit modi dolorem quis quae animi nihil minus sed
-          unde voluptas cumque.
+         Panni payale
+
         </p>
         </a>
       </div>
@@ -58,14 +57,12 @@
 
       <div class="content">
         <div class="title">
-          <h5> Deepak kumar-s</h5>
+          <h5> Deepak kumar</h5>
         </div>
         <span class="mb-2 badge badge-primary"><i class="fa fa-certificate" aria-hidden="true"></i>
           reddit</span>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Odit modi dolorem quis quae animi nihil minus sed
-          unde voluptas cumque.
+          Hello Babe
         </p>
 
         </a>
@@ -76,7 +73,6 @@
       <img src="./plant-mobile.jpg" alt="img">
       <div class="content">
         <div class="title">
-          <h5> Abiram</h5>
           <h5> Abiram</h5>
 
         </div>
@@ -106,6 +102,55 @@
       var idx = Math.floor(Math.random() * list.length)
       document.getElementById('dailyquotes').innerHTML = list[idx]
     }
+
+    const container = document.querySelector('.banner');
+    const plant = document.getElementById('plant');
+    height = plant.offsetHeight;
+    width = plant.offsetWidth;
+    for (var i = 0; i < 10; i++) {
+
+      const block = document.createElement('div');
+      block.classList.add('block');
+      container.appendChild(block)
+    }
+    reduce = height - 200
+    window.addEventListener('resize', function (event) {
+      height = plant.offsetHeight;
+      width = plant.offsetWidth;
+
+      reduce = height - 200
+    });
+    function animateBlock() {
+      anime({
+
+        targets: '.block',
+        translateX: function () {
+          // return anime.random(, width - 50)
+          return anime.random(-10,-width+100)
+        },
+        translateY: function () {
+          return anime.random(50, height/2 )
+        },
+        scale: function () {
+          return anime.random(1, 2)
+        },
+        easing: 'easeOutSine',
+
+        duration: 3000,
+        delay: anime.stagger(5),
+        complete: animateBlock
+      })
+
+    }
+    animateBlock()
+    let elements = document.querySelectorAll('.content1');
+    anime({
+      targets: elements,
+      translateX: [-50, 20],
+
+      duration: 3000,
+    });
+
     $(".slider").owlCarousel({
       nav: true,
       loop: true,
