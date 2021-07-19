@@ -7,9 +7,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  
     <img src="71y7dKn0L7.jpg" alt="Logo" width="80" height="80">
-  </a>
+ 
 
   
 
